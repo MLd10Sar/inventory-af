@@ -3,416 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سیستم مدیریت فروش و گدام افغانستان</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>دمو تعاملی - سیستم مدیریت فروش و گدام افغانستان</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #2c3e50;
             --accent: #27ae60;
-            --light: #ecf0f1;
-            --dark: #34495e;
-            --white: #ffffff;
+            --accent-hover: #219150;
+            --bg-light: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #666;
+            --shadow: 0 4px 12px rgba(0,0,0,0.1);
+            --radius: 12px;
         }
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: linear-gradient(135deg, #1a252f 0%, #34495e 100%);
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
         }
-
-        /* Navbar */
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Navigation */
         nav {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(10px);
-            padding: 15px 5%;
-            border-radius: 15px;
-            margin-bottom: 30px;
+            padding: 15px 20px;
+            border-radius: var(--radius);
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
+            box-shadow: var(--shadow);
         }
-        
-        nav h1 { font-size: 1.2rem; display: flex; align-items: center; gap: 10px; }
-        nav ul { list-style: none; display: flex; gap: 20px; }
-        nav a { color: white; text-decoration: none; font-weight: 500; cursor: pointer; }
-        nav a:hover { color: var(--accent); }
+        .logo { font-size: 1.2rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); margin-right: 15px; font-weight: 500; transition: 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            color: white;
-            padding: 40px 20px;
-            margin-bottom: 30px;
-        }
-        
-        .hero h2 { font-size: 2.5rem; margin-bottom: 15px; }
-        .hero p { font-size: 1.2rem; opacity: 0.8; max-width: 600px; margin: 0 auto; }
+        /* Hero */
+        .hero { text-align: center; padding: 40px 20px; margin-bottom: 30px; color: white; }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 15px; line-height: 1.3; }
+        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 20px; opacity: 0.9; }
+        .cta-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 12px 24px; border-radius: 50px; font-size: 1rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); background: var(--accent-hover); }
+        .btn-outline { background: white; color: var(--primary); }
+        .btn-outline:hover { background: #f0f0f0; }
 
-        /* The Realistic App Simulator */
-        .app-wrapper {
-            background: #f0f2f5;
-            border-radius: 10px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            overflow: hidden;
-            max-width: 1100px;
-            margin: 0 auto 50px;
-            border: 1px solid #444;
-            position: relative;
-        }
-
-        /* Title Bar mimicking Windows */
-        .title-bar {
-            background: white;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #ccc;
-        }
-        .title-bar .app-name { font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
-        .title-bar .controls span {
-            display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-left: 5px;
-        }
-        .controls span.red { background: #ff5f56; }
-        .controls span.yellow { background: #ffbd2e; }
-        .controls span.green { background: #27c93f; }
-
-        /* App Content */
-        .app-content { padding: 15px; min-height: 500px; }
-
-        /* Tabs */
-        .tabs { display: flex; background: #e1e8eb; border-radius: 5px; margin-bottom: 15px; overflow: hidden; }
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            font-family: inherit;
-            font-weight: 500;
-            flex: 1;
-            text-align: center;
-            transition: 0.3s;
-        }
+        /* Demo Section */
+        .demo-section { background: white; border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 40px; }
+        .tabs { display: flex; background: #e1e8eb; overflow-x: auto; }
+        .tab { flex: 1; padding: 15px; border: none; background: transparent; font-family: inherit; font-weight: 600; cursor: pointer; transition: 0.2s; white-space: nowrap; }
         .tab:hover { background: #d5dde0; }
         .tab.active { background: white; color: var(--accent); border-top: 3px solid var(--accent); }
+        .tab-content { display: none; padding: 20px; min-height: 350px; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Login Screen Overlay */
-        #login-screen {
-            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(255,255,255,0.95);
-            display: flex; justify-content: center; align-items: center; z-index: 10;
-        }
-        .login-box { text-align: center; }
-        .login-box input { padding: 10px; margin: 10px; border: 1px solid #ccc; border-radius: 5px; width: 200px; }
-        .login-btn {
-            background: var(--accent); color: white; border: none; padding: 10px 30px;
-            border-radius: 5px; cursor: pointer; font-size: 1rem;
-        }
+        /* Grid Layout for Demo */
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .panel { background: var(--bg-light); padding: 15px; border-radius: 8px; border: 1px solid #ddd; }
+        .panel h3 { margin-bottom: 10px; font-size: 1rem; color: var(--primary); }
+        input, select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; }
+        .product-list, .cart-items { max-height: 200px; overflow-y: auto; background: white; border-radius: 6px; padding: 10px; margin-bottom: 10px; }
+        .item-row { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #eee; cursor: pointer; }
+        .item-row:hover { background: #f9f9f9; }
+        .totals { background: #e8f5e9; padding: 12px; border-radius: 6px; margin-bottom: 10px; }
+        .totals div { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .checkout-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-checkout { padding: 12px; border: none; border-radius: 6px; color: white; font-weight: bold; cursor: pointer; }
+        .btn-cash { background: #27ae60; }
+        .btn-credit { background: #e74c3c; }
 
-        /* Demo Content Grid */
-        .demo-grid {
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 15px;
-            height: 100%;
-        }
+        /* Features Grid */
+        .features-section { margin-bottom: 40px; }
+        .features-section h2 { text-align: center; color: white; margin-bottom: 25px; font-size: 1.8rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .feature-card { background: rgba(255,255,255,0.95); padding: 20px; border-radius: var(--radius); text-align: center; transition: 0.3s; box-shadow: var(--shadow); }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-card i { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
+        .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--primary); }
+        .feature-card p { font-size: 0.9rem; color: var(--text-light); }
 
-        .left-panel, .right-panel {
-            background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-
-        /* Product List */
-        .product-item {
-            display: flex; justify-content: space-between; padding: 10px;
-            border-bottom: 1px solid #eee; cursor: pointer; transition: 0.2s;
-        }
-        .product-item:hover { background: #f9f9f9; }
+        /* Contact */
+        .contact-section { background: white; padding: 30px; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow); margin-bottom: 30px; }
+        .contact-section h2 { color: var(--primary); margin-bottom: 15px; }
+        .contact-info { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-call { background: var(--primary); color: white; }
         
-        /* Cart */
-        .cart-item {
-            display: flex; justify-content: space-between; padding: 8px;
-            background: #f8f9fa; margin-bottom: 5px; border-radius: 5px;
-            font-size: 0.9rem;
-        }
-        .total-section { margin-top: 20px; padding-top: 15px; border-top: 2px dashed #ddd; }
-        .checkout-btn {
-            width: 100%; background: var(--accent); color: white; border: none;
-            padding: 12px; border-radius: 5px; font-size: 1rem; cursor: pointer; margin-top: 10px;
-        }
-        .checkout-btn:hover { background: #219150; }
+        footer { text-align: center; color: rgba(255,255,255,0.7); padding: 20px; font-size: 0.9rem; }
 
-        /* Features Section */
-        .features {
-            max-width: 1100px; margin: 0 auto 50px;
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .demo-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 1.6rem; }
+            nav { flex-direction: column; gap: 10px; }
+            .nav-links { justify-content: center; }
         }
-        .feature-card {
-            background: rgba(255,255,255,0.05); color: white; padding: 25px;
-            border-radius: 15px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .feature-card i { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
-        .feature-card h3 { margin-bottom: 10px; }
-
-        /* Contact Section */
-        .contact-section {
-            background: white; max-width: 800px; margin: 0 auto;
-            padding: 40px; border-radius: 15px; text-align: center;
-        }
-        .contact-btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: #25D366; color: white; padding: 15px 30px;
-            text-decoration: none; border-radius: 50px; font-weight: bold; margin: 10px;
-        }
-        .call-btn { background: var(--primary); }
-
     </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav>
-        <h1><i class="fas fa-store"></i> سیستم مدیریت افغانستان</h1>
-        <ul>
-            <li onclick="scrollToSection('demo')">️ دمو زنده</li>
-            <li onclick="scrollToSection('features')">✨ ویژگی‌ها</li>
-            <li onclick="scrollToSection('contact')">📞 تماس با ما</li>
-        </ul>
-    </nav>
-
-    <!-- Hero -->
-    <div class="hero">
-        <h2>مدیریت آسان فروشگاه، بدون نیاز به اینترنت</h2>
-        <p>نرم‌افزار تخصصی برای کاسبان و فروشندگان افغانستان. تقویم جلالی، چاپ بل، مدیریت قرض‌ها و حساب و کتاب دقیق.</p>
-    </div>
-
-    <!-- Interactive App Demo -->
-    <div id="demo" class="app-wrapper">
-        <div class="title-bar">
-            <div class="app-name"><i class="fas fa-cash-register"></i> سیستم مدیریت فروش و گدام افغانستان</div>
-            <div class="controls"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
-        </div>
-
-        <!-- Login Overlay -->
-        <div id="login-screen">
-            <div class="login-box">
-                <i class="fas fa-user-circle" style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;"></i>
-                <h2>ورود به سیستم</h2>
-                <input type="text" placeholder="نام کاربری (admin)" value="admin">
-                <br>
-                <input type="password" placeholder="رمز عبور" value="1234">
-                <br>
-                <button class="login-btn" onclick="enterApp()">ورود <i class="fas fa-arrow-left"></i></button>
+    <div class="container">
+        <nav>
+            <div class="logo"><i class="fas fa-store"></i> سیستم مدیریت فروش و گدام</div>
+            <div class="nav-links">
+                <a href="#demo">دمو زنده</a>
+                <a href="#features">ویژگی‌ها</a>
+                <a href="#contact">تماس با ما</a>
             </div>
-        </div>
+        </nav>
 
-        <!-- App Content -->
-        <div class="app-content">
+        <section class="hero">
+            <h1>قدرتمندترین سیستم مدیریت فروش <br>مخصوص بازار افغانستان</h1>
+            <p>کاملاً آفلاین، تقویم جلالی دقیق، فاکتور PDF، مدیریت ضایعات، مصارف، تأمین‌کنندگان و گزارشات پیشرفته</p>
+            <div class="cta-buttons">
+                <a href="#demo" class="btn btn-primary"><i class="fas fa-play"></i> مشاهده دمو</a>
+                <!-- دانلود رایگان کد حذف شد -->
+            </div>
+        </section>
+
+        <!-- Interactive Demo -->
+        <section id="demo" class="demo-section">
             <div class="tabs">
-                <button class="tab active" onclick="switchTab('sales')">🛒 فروش و بل</button>
+                <button class="tab active" onclick="switchTab('sales')">💰 فروش و بل</button>
                 <button class="tab" onclick="switchTab('inventory')">📦 گدام و محصولات</button>
                 <button class="tab" onclick="switchTab('customers')">👥 مشتریان و قرض</button>
                 <button class="tab" onclick="switchTab('reports')">📊 گزارشات</button>
             </div>
 
-            <!-- Sales Tab Content -->
-            <div id="tab-sales" class="tab-content">
+            <div id="tab-sales" class="tab-content active">
                 <div class="demo-grid">
-                    <div class="left-panel">
-                        <h3>لیست محصولات (جستجو کنید)</h3>
-                        <input type="text" placeholder="🔍 نام محصول یا بارکد..." style="width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px;">
-                        <div id="product-list">
-                            <!-- Products injected via JS -->
+                    <div class="panel">
+                        <h3>📋 لیست محصولات</h3>
+                        <input type="text" placeholder="جستجوی محصول یا بارکد...">
+                        <div class="product-list">
+                            <div class="item-row" onclick="addToCart('برنج سله اول', 60)"><span>برنج سله اول (کیلو)</span><span style="color:#27ae60">60 افغانی</span></div>
+                            <div class="item-row" onclick="addToCart('روغن مایع', 120)"><span>روغن مایع (لیتر)</span><span style="color:#27ae60">120 افغانی</span></div>
+                            <div class="item-row" onclick="addToCart('شکر سفید', 45)"><span>شکر سفید (کیلو)</span><span style="color:#27ae60">45 افغانی</span></div>
                         </div>
                     </div>
-                    <div class="right-panel">
-                        <h3>سبد خرید</h3>
-                        <div id="cart-items" style="min-height: 150px;">
-                            <p style="color: #999; text-align: center; margin-top: 40px;">سبد خرید خالی است</p>
+                    <div class="panel">
+                        <h3>🛒 سبد خرید و پرداخت</h3>
+                        <div class="cart-items" id="cart">
+                            <p style="text-align:center; color:#999; padding:20px;">سبد خرید خالی است</p>
                         </div>
-                        <div class="total-section">
-                            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem;">
-                                <span>مجموع:</span>
-                                <span id="cart-total">0 افغانی</span>
-                            </div>
-                            <button class="checkout-btn" onclick="checkout()">✅ ثبت بل و چاپ</button>
+                        <div class="totals">
+                            <div><span>مجموع:</span><span id="sub">0 افغانی</span></div>
+                            <div><span>مالیات (5%):</span><span id="tax">0 افغانی</span></div>
+                            <div style="font-weight:bold; border-top:1px dashed #ccc; padding-top:5px;"><span>قابل پرداخت:</span><span id="total">0 افغانی</span></div>
+                        </div>
+                        <div class="checkout-btns">
+                            <button class="btn-checkout btn-cash" onclick="checkout('نقد')">✅ نقد</button>
+                            <button class="btn-checkout btn-credit" onclick="checkout('قرض')">📝 قرض</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Inventory Tab Content (Simple View) -->
-            <div id="tab-inventory" class="tab-content" style="display: none;">
-                <div class="left-panel">
-                    <h3>موجودی انبار</h3>
-                    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                        <tr style="background: #eee; text-align: right;"><th style="padding: 10px;">نام</th><th>موجودی</th><th>قیمت</th></tr>
-                        <tr><td style="padding: 10px;">برنج سله اول</td><td>500 سیر</td><td>2000 افغانی</td></tr>
-                        <tr><td style="padding: 10px;">روغن مایع</td><td>120 دانه</td><td>150 افغانی</td></tr>
-                        <tr><td style="padding: 10px;">شکر سفید</td><td>300 کیلو</td><td>60 افغانی</td></tr>
-                        <tr><td style="padding: 10px;">چای</td><td>45 پیکت</td><td>250 افغانی</td></tr>
-                    </table>
+            <div id="tab-inventory" class="tab-content">
+                <div class="panel" style="max-width:600px; margin:0 auto;">
+                    <h3>📦 افزودن محصول جدید</h3>
+                    <input type="text" placeholder="نام محصول">
+                    <input type="text" placeholder="واحد (کیلو، دانه، سیر...)">
+                    <input type="number" placeholder="قیمت خرید">
+                    <input type="number" placeholder="قیمت فروش">
+                    <input type="number" placeholder="موجودی اولیه">
+                    <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="alert('✅ محصول با موفقیت به گدام اضافه شد.')">➕ ثبت در گدام</button>
                 </div>
             </div>
 
-            <!-- Customers Tab Content -->
-            <div id="tab-customers" class="tab-content" style="display: none;">
-                <div class="left-panel">
-                    <h3>لیست مشتریان و قرض‌داران</h3>
-                    <div class="product-item">
-                        <span>👤 احمد خان</span>
-                        <span style="color: red;">📉 بدهی: 5000 افغانی</span>
-                    </div>
-                    <div class="product-item">
-                        <span>👤 محمدرحیم</span>
-                        <span style="color: green;">✅ تسویه شده</span>
-                    </div>
-                    <div class="product-item">
-                        <span>👤 کریم الله</span>
-                        <span style="color: red;">📉 بدهی: 1200 افغانی</span>
-                    </div>
+            <div id="tab-customers" class="tab-content">
+                <div class="panel" style="max-width:600px; margin:0 auto;">
+                    <h3>👥 مدیریت مشتریان و قرض‌داران</h3>
+                    <input type="text" placeholder="نام مشتری">
+                    <input type="text" placeholder="شماره تلفن">
+                    <input type="number" placeholder="سقف اعتبار (اختیاری)">
+                    <button class="btn btn-primary" style="width:100%; margin-top:10px;" onclick="alert('✅ مشتری جدید ثبت شد. امکان صدور صورت حساب دوره‌ای فعال است.')">➕ ثبت مشتری</button>
                 </div>
             </div>
 
-            <!-- Reports Tab Content -->
-            <div id="tab-reports" class="tab-content" style="display: none;">
-                <div class="features" style="margin: 0; grid-template-columns: 1fr 1fr 1fr;">
-                    <div class="feature-card" style="background: white; color: #333; border: 1px solid #eee;">
-                        <h3>💰 فروش امروز</h3>
-                        <p style="font-size: 2rem; font-weight: bold; color: var(--accent);">12,500 افغانی</p>
+            <div id="tab-reports" class="tab-content">
+                <div class="panel">
+                    <h3>📊 داشبورد گزارشات</h3>
+                    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:15px; margin-top:15px;">
+                        <div style="background:#e8f5e9; padding:15px; border-radius:8px; text-align:center;"><h4>فروش امروز</h4><p style="font-size:1.2rem; font-weight:bold; color:#27ae60;">0 افغانی</p></div>
+                        <div style="background:#ffebee; padding:15px; border-radius:8px; text-align:center;"><h4>قرض امروز</h4><p style="font-size:1.2rem; font-weight:bold; color:#e74c3c;">0 افغانی</p></div>
+                        <div style="background:#e3f2fd; padding:15px; border-radius:8px; text-align:center;"><h4>تعداد محصولات</h4><p style="font-size:1.2rem; font-weight:bold; color:#2196f3;">0</p></div>
+                        <div style="background:#fff3e0; padding:15px; border-radius:8px; text-align:center;"><h4>سود خالص</h4><p style="font-size:1.2rem; font-weight:bold; color:#ff9800;">0 افغانی</p></div>
                     </div>
-                    <div class="feature-card" style="background: white; color: #333; border: 1px solid #eee;">
-                        <h3>📊 سود خالص</h3>
-                        <p style="font-size: 2rem; font-weight: bold; color: blue;">2,400 افغانی</p>
-                    </div>
-                    <div class="feature-card" style="background: white; color: #333; border: 1px solid #eee;">
-                        <h3>🛒 تعداد بل</h3>
-                        <p style="font-size: 2rem; font-weight: bold;">14 عدد</p>
-                    </div>
+                    <button class="btn btn-outline" style="width:100%; margin-top:20px;" onclick="alert('✅ گزارش شام (PDF) با موفقیت تولید و دانلود شد.')">📥 دانلود گزارش شام</button>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Features Section -->
-    <div id="features" class="features">
-        <div class="feature-card">
-            <i class="fas fa-wifi"></i>
-            <h3>بدون نیاز به اینترنت</h3>
-            <p>برنامه کاملاً آفلاین کار می‌کند. نگران قطع شدن اینترنت نباشید.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-calendar-alt"></i>
-            <h3>تقویم جلالی کامل</h3>
-            <p>تمام تاریخ‌ها به صورت شمسی (جلالی) است. نام ماه‌ها به دری.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-file-invoice-dollar"></i>
-            <h3>چاپ بل و فاکتور</h3>
-            <p>صدور بل فروش حرفه‌ای با لوگوی دکان شما در چند ثانیه.</p>
-        </div>
-        <div class="feature-card">
-            <i class="fas fa-users"></i>
-            <h3>مدیریت قرض‌ها</h3>
-            <p>لیست مشتریانی که به شما بدهکار هستند را همیشه تحت نظر داشته باشید.</p>
-        </div>
-    </div>
+        <!-- Advanced Features -->
+        <section id="features" class="features-section">
+            <h2>✨ امکانات حرفه‌ای سیستم</h2>
+            <div class="features-grid">
+                <div class="feature-card"><i class="fas fa-recycle"></i><h3>مدیریت ضایعات</h3><p>ثبت و فروش ضایعات با محاسبه خودکار کسر از موجودی و گزارش‌گیری مجزا</p></div>
+                <div class="feature-card"><i class="fas fa-file-invoice-dollar"></i><h3>مدیریت مصارف</h3><p>ثبت هزینه‌های روزانه دکان، کنترل بودجه ماهانه و نمودار روند هزینه‌ها</p></div>
+                <div class="feature-card"><i class="fas fa-chart-line"></i><h3>گزارشات پیشرفته</h3><p>دسترسی سریع به تمام گزارشات مالی، انبار و عملکرد فروش در یک نگاه</p></div>
+                <div class="feature-card"><i class="fas fa-truck-loading"></i><h3>تأمین‌کنندگان</h3><p>مدیریت خرید نسیه، پیگیری بدهی‌ها، تاریخچه قیمت‌ها و تسویه حساب</p></div>
+                <div class="feature-card"><i class="fas fa-file-alt"></i><h3>صورت حساب مشتری</h3><p>صدور صورت حساب دوره‌ای با جزئیات کامل تراکنش‌ها و مانده بدهی</p></div>
+                <div class="feature-card"><i class="fas fa-clock"></i><h3>سن انبار</h3><p>محاسبه خودکار روزهای ماندگاری کالا در انبار و هشدار فسادپذیری</p></div>
+                <div class="feature-card"><i class="fas fa-box-open"></i><h3>اجناس بی‌حرکت</h3><p>هشدار خودکار کالاهای بدون فروش در ۹۰ روز گذشته برای جلوگیری از خواب سرمایه</p></div>
+                <div class="feature-card"><i class="fas fa-moon"></i><h3>گزارش شام</h3><p>تصفیه روزانه، محاسبه فروش نقد/قرض، مغایرت صندوق و خروجی PDF</p></div>
+                <div class="feature-card"><i class="fas fa-coins"></i><h3>گزارش سود کالا</h3><p>تحلیل سود خالص هر محصول به صورت جداگانه بر اساس قیمت خرید و فروش</p></div>
+                <div class="feature-card"><i class="fas fa-balance-scale"></i><h3>مقایسه ماهانه</h3><p>مقایسه خودکار فروش، مصارف و سود ماه جاری با ماه قبل به صورت درصدی</p></div>
+                <div class="feature-card"><i class="fas fa-crown"></i><h3>پرسودترین مشتریان</h3><p>رتبه‌بندی مشتریان بر اساس حجم خرید، خوش‌حسابی و سودآوری برای دکان</p></div>
+            </div>
+        </section>
 
-    <!-- Contact Section -->
-    <div id="contact" class="contact-section">
-        <h2>📞 تماس با ما</h2>
-        <p style="margin: 15px 0; color: #666;">برای سفارش، پشتیبانی یا دریافت نسخه کامل با ما تماس بگیرید.</p>
-        
-        <a href="https://wa.me/93707841991" class="contact-btn">
-            <i class="fab fa-whatsapp"></i> پیام در واتساپ
-        </a>
-        <a href="tel:+93700000000" class="contact-btn call-btn">
-            <i class="fas fa-phone"></i> تماس تلفنی
-        </a>
-        <p style="margin-top: 20px; font-size: 0.9rem; color: #888;">کابل، افغانستان | پشتیبانی ۲۴ ساعته</p>
+        <!-- Contact -->
+        <section id="contact" class="contact-section">
+            <h2>📞 تماس با ما</h2>
+            <p>برای دریافت نسخه کامل، پشتیبانی یا سفارش اختصاصی تماس بگیرید:</p>
+            <div class="contact-info">
+                <a href="https://wa.me/93707841991" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> واتساپ: 0707841991</a>
+                <a href="tel:+93707841991" class="btn btn-call"><i class="fas fa-phone"></i> تماس مستقیم: 0707841991</a>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 1405 سیستم مدیریت فروش و گدام افغانستان | طراحی شده برای کسب‌وکارهای محلی</p>
+        </footer>
     </div>
 
     <script>
-        // Simple JS to make the demo work
-        const products = [
-            { id: 1, name: 'برنج سیله اول (۱۰ کیلو)', price: 450 },
-            { id: 2, name: 'روغن مایع (۱. لیتر)', price: 180 },
-            { id: 3, name: 'بوره (۱ کیلو)', price: 65 },
-            { id: 4, name: 'چای خشک (۵۰ گرم)', price: 40 },
-            { id: 5, name: 'ماکارونی (۵۰۰ گرم)', price: 35 },
-            { id: 6, name: 'بادنجان رومی (۱ کیلو)', price: 30 }
-        ];
-        
-        let cart = [];
-
-        // Initialize products list
-        const prodContainer = document.getElementById('product-list');
-        products.forEach(p => {
-            const div = document.createElement('div');
-            div.className = 'product-item';
-            div.innerHTML = `<span>${p.name}</span><span style="color: green; font-weight: bold;">${p.price} افغانی</span>`;
-            div.onclick = () => addToCart(p);
-            prodContainer.appendChild(div);
-        });
-
-        function enterApp() {
-            document.getElementById('login-screen').style.display = 'none';
-        }
-
+        // Tab Switching
         function switchTab(tabName) {
-            // Hide all contents
-            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
-            // Remove active class
-            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-            
-            // Show selected
-            document.getElementById('tab-' + tabName).style.display = 'block';
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
-        function addToCart(product) {
-            cart.push(product);
+        // Cart Logic
+        let cart = [];
+        function addToCart(name, price) {
+            const existing = cart.find(i => i.name === name);
+            if (existing) existing.qty++;
+            else cart.push({ name, price, qty: 1 });
             renderCart();
         }
-
         function renderCart() {
-            const cartContainer = document.getElementById('cart-items');
-            const totalEl = document.getElementById('cart-total');
-            
+            const container = document.getElementById('cart');
             if (cart.length === 0) {
-                cartContainer.innerHTML = '<p style="color: #999; text-align: center; margin-top: 40px;">سبد خرید خالی است</p>';
-                totalEl.textContent = '0 افغانی';
+                container.innerHTML = '<p style="text-align:center; color:#999; padding:20px;">سبد خرید خالی است</p>';
+                updateTotals(0);
                 return;
             }
-
-            let html = '';
-            let total = 0;
-            
-            // Group items just for display logic (simplified)
-            cart.forEach((item, index) => {
-                html += `<div class="cart-item"><span>${item.name}</span><span>${item.price} افغانی</span></div>`;
-                total += item.price;
-            });
-            
-            cartContainer.innerHTML = html;
-            totalEl.textContent = total + ' افغانی';
+            container.innerHTML = cart.map((i, idx) => `
+                <div class="item-row">
+                    <span>${i.name} x${i.qty}</span>
+                    <span>${(i.price * i.qty).toLocaleString()} افغانی</span>
+                </div>
+            `).join('');
+            const sub = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            updateTotals(sub);
         }
-
-        function checkout() {
-            if (cart.length === 0) {
-                alert("⚠️ سبد خرید خالی است!");
-                return;
-            }
-            alert("✅ بل با موفقیت ثبت و چاپ شد!\n\nاین یک دمو است.");
+        function updateTotals(sub) {
+            const tax = sub * 0.05;
+            const total = sub + tax;
+            document.getElementById('sub').textContent = sub.toLocaleString() + ' افغانی';
+            document.getElementById('tax').textContent = tax.toLocaleString() + ' افغانی';
+            document.getElementById('total').textContent = total.toLocaleString() + ' افغانی';
+        }
+        function checkout(type) {
+            if (cart.length === 0) return alert('⚠️ سبد خرید خالی است!');
+            const total = document.getElementById('total').textContent;
+            alert(`✅ فروش ${type} با موفقیت ثبت شد.\nمبلغ: ${total}\nبل PDF به صورت خودکار تولید شد.`);
             cart = [];
             renderCart();
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
